@@ -15,4 +15,14 @@ class Subscriber extends Model
         'customer_id',
         'subscriber_user_id',
     ];
+
+    public function subscribedDetail()
+    {
+        return $this->hasOne(User::class,'id','customer_id');
+    }
+
+    public function subscriberDetail()
+    {
+        return $this->hasMany(User::class,'id','subscriber_user_id');
+    }
 }

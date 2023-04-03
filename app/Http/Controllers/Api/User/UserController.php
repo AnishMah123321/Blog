@@ -54,7 +54,7 @@ class UserController extends Controller
     {
         try {
             try {
-                $subscribers = Subscriber::where('customer_id', $id)->orderBy('id', 'desc')->get();
+                $subscribers = Subscriber::where('customer_id', $id)->orderBy('id', 'desc')->with('subscriberDetail')->get();
             } catch (Exception $e) {
                 DB::rollBack();
                 return response()->json([
@@ -117,7 +117,7 @@ class UserController extends Controller
     {
         try {
             try {
-                $subscribed = Subscriber::where('subscriber_user_id', $id)->orderBy('id', 'desc')->get();
+                $subscribed = Subscriber::where('subscriber_user_id', $id)->orderBy('id', 'desc')->with('subscribedDetail')->get();
             } catch (Exception $e) {
                 DB::rollBack();
                 return response()->json([

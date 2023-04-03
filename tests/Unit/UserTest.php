@@ -16,6 +16,7 @@ class UserTest extends TestCase
      *
      * @return void
      */
+    
     public function test_create_new_users()
     {
         $response = $this->post('/api/register',[
@@ -24,6 +25,15 @@ class UserTest extends TestCase
             'mobile_number' => mt_rand(1000000000, 9999999999),
             'password' =>  'test',
             'password_confirmation' => 'test'
+        ]);
+        $response->assertStatus(200);
+    }
+
+    public function test_login()
+    {
+        $response = $this->post('/api/login',[
+            'email' => 'unittest@user.test',
+            'passowrd' => 'test',
         ]);
         $response->assertStatus(200);
     }
